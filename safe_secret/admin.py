@@ -1,3 +1,4 @@
 from django.contrib import admin
+from safe_secret.models import Secret
 
-# Register your models here.
+admin.site.register(Secret)
