@@ -10,6 +10,7 @@ class Secret(models.Model):
     link = models.CharField(max_length=250, verbose_name='Ссылка', **NULLABLE)
     lifetime = models.PositiveSmallIntegerField(verbose_name='Время жизни')
     is_code_phrase = models.BooleanField(default=False)
+    time_to_delete = models.DateTimeField(verbose_name='время удаления', **NULLABLE)
 
     def __str__(self):
         return f'Секрет {self.pk}'

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_celery_beat',
 
     'users',
     'safe_secret',
@@ -87,6 +88,7 @@ DATABASES = {
         'NAME': os.getenv('db_name'),
         'USER': os.getenv('db_user'),
         'PASSWORD': os.getenv('db_pass'),
+        'HOST': os.getenv('db_host'),
     }
 }
 
@@ -139,3 +141,10 @@ os.environ['AWS_ACCESS_KEY_ID'] = os.getenv('AWS_ACCESS_KEY_ID')
 os.environ['AWS_SECRET_ACCESS_KEY'] = os.getenv('AWS_SECRET_ACCESS_KEY')
 key_arn = os.getenv('key_arn')
 
+# URL-адрес брокера сообщений Redis
+CELERY_BROKER_URL = 'redis://redis:6379'
+
+# URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+
+CELERY_TASK_TRACK_STARTED = os.getenv('CELERY_TASK_TRACK_STARTED') == 'True'
