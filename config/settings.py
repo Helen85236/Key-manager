@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'django_celery_beat',
+    'drf_yasg',
 
     'users',
     'safe_secret',

@@ -6,6 +6,7 @@ NULLABLE = {'null': True, 'blank': True}
 
 class Secret(models.Model):
     code_phrase = models.CharField(max_length=64, verbose_name='Хэш', **NULLABLE)
+    secret_text = models.TextField(verbose_name='Cекретный текст')
     ciphertext = models.TextField(verbose_name='Зашифрованный текст')
     link = models.CharField(max_length=250, verbose_name='Ссылка', **NULLABLE)
     lifetime = models.PositiveSmallIntegerField(verbose_name='Время жизни')

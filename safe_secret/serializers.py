@@ -6,11 +6,12 @@ class SecretSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Secret
-        fields = ['code_phrase', 'lifetime', 'ciphertext', 'link']
+        fields = ['code_phrase', 'lifetime', 'secret_text', 'link']
+        read_only_fields = ['link']
 
 
 class SecretRetrieveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Secret
-        fields = ['ciphertext']
+        fields = ['secret_text']
