@@ -3,6 +3,7 @@ import aws_encryption_sdk
 from aws_encryption_sdk import CommitmentPolicy
 from botocore.session import Session
 from config.settings import key_arn
+import hashlib
 
 
 class Encryptor:
@@ -63,3 +64,24 @@ class Encryptor:
         plaintext = cycled_plaintext.decode('utf-8')
 
         return plaintext
+
+
+
+def sha256_hash(text):
+    # Преобразовываем текст в байтовую строку (так как hashlib работает с байтами)
+    text_bytes = text.encode('utf-8')
+
+    # Создаем объект хеша SHA-256
+    sha256 = hashlib.sha256()
+
+    # Обновляем хеш с байтами текста
+    sha256.update(text_bytes)
+
+    # Получаем захешированное значение в виде шестнадцатеричной строки
+    hashed_text = sha256.hexdigest()
+
+    return hashed_text
+
+
+def make_link(hash: str) -> str:
+    return f"http://127.0.0.1:8000/secret/{hash}/"
