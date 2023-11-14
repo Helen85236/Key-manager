@@ -65,7 +65,6 @@ class Encryptor:
         return plaintext
 
 
-
 def sha256_hash(text):
     # Преобразовываем текст в байтовую строку (так как hashlib работает с байтами)
     text_bytes = text.encode('utf-8')
