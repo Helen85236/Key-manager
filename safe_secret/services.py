@@ -13,18 +13,17 @@ class Encryptor:
 
     def __init__(self):
         """
-        key str: Имя ресурса Amazon;
-        botocore_session: существующий экземпляр сеанса;
-        type botocore_session: botocore Сессия
+        str key: Amazon Resource Name (ARN) of the &KMS; key
+        botocore_session: existing botocore session instance
+        type botocore_session: botocore.session.Session
         """
         self.key = key_arn
         self.botocore_session = Session()
 
     def __setup(self):
         """
-        Настройка клиента шифрования. Если не выбираеть
-        политику обязательств, REQUIRE_ENCRYPT_REQUIRE_DECRYPT
-        используется по умолчанию.
+            Set up an encryption client with an explicit commitment policy. If you do not explicitly choose a
+            commitment policy, REQUIRE_ENCRYPT_REQUIRE_DECRYPT is used by default.
         """
 
         client = aws_encryption_sdk.EncryptionSDKClient(

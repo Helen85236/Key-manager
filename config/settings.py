@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+from datetime import timedelta
 from pathlib import Path
+from django.utils import timezone
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -149,3 +151,12 @@ CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'redis://redis:6379'
 
 CELERY_TASK_TRACK_STARTED = os.getenv('CELERY_TASK_TRACK_STARTED') == 'True'
+
+# Periodic task for celery
+CELERY_BEAT_SCHEDULE = {
+    'delete_expired_secrets': {
+        'task': 'safe_secret.tasks.delete_expired_secrets',
+        'schedule': timedelta(minutes=1),
+        'start_time': timezone.now()
+    },
+}
