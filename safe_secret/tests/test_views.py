@@ -28,6 +28,7 @@ class SecretTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data, expected_data)
+        self.assertIn('link', response.data)
 
     def test_get(self):
         response_to_get = self.client.get(self.created_object.data['link'])
